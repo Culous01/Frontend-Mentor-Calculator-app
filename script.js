@@ -214,11 +214,38 @@ loadSavedTheme();
 
 // Calculator logic
 function appendToDiplay(input) {
-    textInput.value += input;
+    // If input is an operator, just append it
+    if (['+', '-', '*', '/', '.'].includes(input)) {
+        textInput.value += input;
+    } else {
+        // Append digit and format with commas
+        const current = textInput.value;
+        const lastNumber = current.split(/[\+\-\*\/]/).pop().replace(/,/g, '');
+        const rest = current.slice(0, current.length - lastNumber.length);
+        const newNumber = (lastNumber + input).replace(/^0+(?=\d)/, ''); // Remove leading zeros
+        const formatted = Number(newNumber).toLocaleString();
+
+        textInput.value = rest + formatted;
+    }
 }
 
 function del() {
-    textInput.value = textInput.value.slice(0, -1);
+        const current = textInput.value;
+    const lastChar = current.slice(-1);
+
+    if (lastChar.match(/[\d,]/)) {
+        // Remove last digit and reformat
+        const lastNumber = current.split(/[\+\-\*\/]/).pop().replace(/,/g, '');
+        const rest = current.slice(0, current.length - lastNumber.length);
+
+        const newNumber = lastNumber.slice(0, -1);
+        const formatted = Number(newNumber || 0).toLocaleString();
+
+        textInput.value = rest + (newNumber ? formatted : '');
+    } else {
+        // Remove last operator
+        textInput.value = current.slice(0, -1);
+    }
 }
 
 function reset() {
@@ -227,7 +254,9 @@ function reset() {
 
 function equalTo() {
     try {
-        textInput.value = eval(textInput.value);
+        const expression = textInput.value.replace(/,/g, ''); // Remove commas
+        const result = eval(expression);
+        textInput.value = Number(result).toLocaleString(); // Format with commas
     } catch {
         textInput.value = "Error";
     }
