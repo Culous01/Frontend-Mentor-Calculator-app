@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* outline: 1px solid black; */
+}
+
+:root {
+
+    /* ### Theme 1 */
+    /* #### Backgrounds */
+    --Very-dark-desaturated-blue-main-background: hsl(222, 26%, 31%);
+    --Very-dark-desaturated-blue-togglebackground-keypadbackground: hsl(223, 31%, 20%);
+    --Very-dark-desaturated-blue-screenbackground: hsl(224, 36%, 15%);
+
+    /* #### Keys */
+    --Desaturated-dark-blue-keybackground: hsl(225, 21%, 49%);
+    --Desaturated-dark-blue-keyshadow: hsl(224, 28%, 35%);
+    --Red-keybackground-toggle: hsl(6, 63%, 50%);
+    --Dark-red-keyshadow: hsl(6, 70%, 34%);
+    --Light-grayish-orange-keybackground: hsl(30, 25%, 89%);
+    --Grayish-orange-keyshadow: hsl(28, 16%, 65%);
+
+    /* #### Text */
+    --Very-dark-grayish-blue: hsl(221, 14%, 31%);
+    --White: hsl(0, 0%, 100%);
+
+
+    /* ### Theme 2 */
+    /* #### Backgrounds */
+    --Light-gray-mainbackground: hsl(0, 0%, 90%);
+    --Grayish-red-togglebackground-keypadbackground: hsl(0, 5%, 81%);
+    --Very-light-gray-screenbackground: hsl(0, 0%, 93%);
+
+    /* #### Keys */
+    --Dark-moderate-cyan-keybackground: hsl(185, 42%, 37%);
+    --Very-dark-cyan-keyshadow: hsl(185, 58%, 25%);
+    --Orange-keybackground-toggle: hsl(25, 98%, 40%);
+    --Dark-orange-keyshadow: hsl(25, 99%, 27%);
+    --Light-grayish-yellow-keybackground: hsl(45, 7%, 89%);
+    --Dark-grayish-orange-keyshadow: hsl(35, 11%, 61%);
+
+    /* #### Text */
+    --Very-dark-grayish-yellow: hsl(60, 10%, 19%);
+    --White-text: hsl(0, 0%, 100%);
+
+    /* ### Theme 3 */
+    /* #### Backgrounds */
+    --Very-dark-violet-mainbackground: hsl(268, 75%, 9%);
+    --Very-dark-violet-togglebackground-keypadbackground-screenbackground: hsl(268, 71%, 12%);
+
+    /* #### Keys */
+    --Dark-violet-keybackground: hsl(281, 89%, 26%);
+    --Vivid-magenta-keyshadow: hsl(285, 91%, 52%);
+    --Pure-cyan-keybackground-toggle: hsl(176, 100%, 44%);
+    --Soft-cyan-keyshadow: hsl(177, 92%, 70%);
+
+    --Very-dark-violet-keybackground: hsl(268, 47%, 21%);
+    --Dark-magenta-keyshadow: hsl(290, 70%, 36%);
+
+    /* #### Text */
+
+    --Light-yellow: hsl(52, 100%, 62%);
+    --Very-dark-blue: hsl(198, 20%, 13%);
+    --White-text: hsl(0, 0%, 100%);
+
+    /* ## Typography */
+    /* ### Body Copy */
+    --Font-size: 32px;
+}
+
+body {
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: var(--Very-dark-desaturated-blue-main-background);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    place-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.calc {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--White);
+}
+
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.theme-switcher label {
+    font-size: 15px;
+    letter-spacing: 1px;    
+    color: var(--White);
+    font-weight: bolder;
+}
+
+.switch {
+    display: flex;
+    flex-direction: column;  
+    align-items: flex-end;
+}
+
+.labels {
+    display: flex;
+    justify-content: center;
+    width: 85px;
+    gap: 21px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: var(--White);
+    font-weight: bold;
+}
+
+.theme-input {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.toggle {
+    position: relative;
+    width: 85px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.toggle input:nth-child(1) {
+    left: 10px;  
+}
+.toggle input:nth-child(2) {
+    left: 30px;
+}
+.toggle input:nth-child(3) {
+    left: 55px;
+}
+
+.ball {
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: left 0.3s ease;
+    pointer-events: none;
+}
+
+#theme1:checked ~ .ball {
+    left: 5px;
+    background-color: var(--Red-keybackground-toggle);
+}
+
+#theme2:checked ~ .ball {
+    left: 30px;
+    background-color: var(--Orange-keybackground-toggle);
+}
+
+#theme3:checked ~ .ball {
+    left: 60px;
+    background-color: var(--Pure-cyan-keybackground-toggle);
+}
+
+.input-container {
+    margin-bottom: 30px;
+}
+
+.input-container input {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-align: right;
+    padding: 15px 30px;
+    font-style: normal;
+    font-size: 40px;
+    font-weight: bolder;
+    pointer-events: none;
+}
+
+.buttons-container {
+    display: grid;
+    background-color: var(--Very-dark-desaturated-blue-togglebackground-keypadbackground);
+    border-radius: 10px;
+    padding: 25px;
+    grid-template-columns: repeat(4, 2fr);
+    grid-gap: 20px;
+    justify-content: center;
+}
+
+button {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.special-btns {
+    display: grid;
+    grid-column: span 2;
+}
+
+.light-bc {
+    color: var(--Very-dark-desaturated-blue-togglebackground-keypadbackground);
+    font-weight: bold;
+    font-size: 25px;
+}
+
+@media (max-width: 751px) {
+    .theme {
+        min-width: 45%;
+    }
+
+    .input-container input {
+    height: 100px;
+}
+
+    .buttons-container {
+    padding: 20px;
+    grid-gap: 17px;
+}
+
+button {
+    padding: 16px 5px;
+}
+}
+
+.attribution { 
+    /* font-size: 11px;  */
+    text-align: center; 
+}
+.attribution a { 
+    color: hsl(56, 100%, 50%); 
+}
