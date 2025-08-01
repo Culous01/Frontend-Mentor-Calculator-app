@@ -7,7 +7,7 @@ const calcHeaders = document.querySelectorAll('.calcs');
 const textInput = document.getElementById('text-input');
 const buttonsContainer = document.querySelector('.buttons-container');
 const inputThemeContainer = document.querySelector('.toggle');
-const body = document.body;
+const {body} = document;
 
 // Load saved theme settings
 function loadSavedTheme() {
@@ -33,7 +33,9 @@ function loadSavedTheme() {
         checkedTheme: localStorage.getItem('checkedTheme'),
     };
 
-    if (settings.color) body.style.backgroundColor = settings.color;
+    if (settings.color) {
+        body.style.backgroundColor = settings.color;
+    }
 
     multipleButtons.forEach(btn => {
         btn.style.backgroundColor = settings.buttonColor;
@@ -68,7 +70,9 @@ function loadSavedTheme() {
 
     // Apply saved radio selection
     const savedRadio = document.getElementById(settings.checkedTheme);
-    if (savedRadio) savedRadio.checked = true;
+    if (savedRadio) {
+        savedRadio.checked = true;
+    }
 }
 
 // Save settings to localStorage
